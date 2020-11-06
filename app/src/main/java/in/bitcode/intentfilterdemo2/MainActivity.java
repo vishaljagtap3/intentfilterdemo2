@@ -18,7 +18,7 @@ import android.widget.ImageView;
 public class MainActivity extends AppCompatActivity {
 
     private EditText mEdtFilePath;
-    private Button mBtnShowImage, mBtnShowImageInGal;
+    private Button mBtnShowImage, mBtnShowImageInGal, mBtnSendBroadcast;
     private Button mBtnAudio, mBtnVideo, mBtnWeb, mBtnCallPhone, mBtnShare, mBtnPickImage;
     private ImageView mImg;
 
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 new StrictMode.VmPolicy.Builder().build()
         );
 
+        mBtnSendBroadcast = findViewById(R.id.btnSendBroadcast);
         mBtnShowImage = findViewById(R.id.btnShowImage);
         mEdtFilePath = findViewById(R.id.edtFilePath);
         mBtnShowImageInGal = findViewById(R.id.btnShowImageInGal);
@@ -41,6 +42,17 @@ public class MainActivity extends AppCompatActivity {
         mBtnShare = findViewById(R.id.btnShare);
         mBtnPickImage = findViewById(R.id.btnPickImage);
         mImg = findViewById(R.id.img);
+
+
+        mBtnSendBroadcast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent("in.bitcode.course.download.COMPLETE");
+                //intent.setAction(Intent.ACTION_BATTERY_LOW);
+                intent.putExtra("path", "/storage/bitcode/android/tutorial.mp4");
+                sendBroadcast(intent);
+            }
+        });
 
 
         mBtnShowImage.setOnClickListener(new View.OnClickListener() {
